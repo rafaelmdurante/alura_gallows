@@ -1,5 +1,5 @@
 function createSprite(selector) {
-
+  // ===== VARIABLES =====
   var $el = $(selector);
 
   var frames = [
@@ -13,6 +13,7 @@ function createSprite(selector) {
 
   $el.addClass(frames[current]);
 
+  // ===== FUNCTIONS =====
   function moveFrame(from, to) {
     $el.removeClass(from)
       .addClass(to);
@@ -22,6 +23,7 @@ function createSprite(selector) {
     moveFrame(frames[current], frames[++current]);
   }
 
+  // ===== RETURN =====
   return {
     nextFrame: nextFrame
   }
