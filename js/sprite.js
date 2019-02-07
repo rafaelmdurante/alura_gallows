@@ -15,8 +15,7 @@ var createSprite = function(selector) {
 
   // ===== FUNCTIONS =====
   var moveFrame = function(from, to) {
-    $el.removeClass(from)
-      .addClass(to);
+    $el.removeClass(from).addClass(to);
   }
 
   var hasNext = function() {
@@ -27,8 +26,19 @@ var createSprite = function(selector) {
     if (hasNext()) moveFrame(frames[current], frames[++current]);
   }
 
+  var reset = function() {
+    moveFrame(frames[current], frames[0]);
+    current = 0;
+  }
+
+  var isFinished = function() {
+    return !hasNext();
+  }
+
   // ===== RETURN =====
   return {
-    nextFrame: nextFrame
+    nextFrame: nextFrame,
+    reset: reset,
+    isFinished: isFinished
   }
 }
