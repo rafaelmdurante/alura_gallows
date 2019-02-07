@@ -1,4 +1,5 @@
-var criaJogo = function () {
+//recebe sprite como parâmetro
+var criaJogo = function (sprite) {
 
   // ===== VARIABLES =====
   var etapa = 1;
@@ -6,6 +7,22 @@ var criaJogo = function () {
   var palavraSecreta = '';
 
   // ===== FUNCTIONS =====
+  // processa o chute
+  var processaChute = function(chute) {
+    var exp = new RegExp(chute, 'gi'),
+        res,
+        acertou = false;
+
+    while (res = exp.exec(palavraSecreta)) {
+      lacunas[res.index] = chute;
+      acertou = true;
+    }
+
+    if (!acertou) {
+      sprite.nextFrame();
+    }
+
+  };
   // adiciona uma lacuna em branco para cada letra da palavraSecreta
   var criaLacunas = function () {
     lacunas = Array(palavraSecreta.length).fill('');
@@ -42,6 +59,7 @@ var criaJogo = function () {
   return {
     setPalavraSecreta: setPalavraSecreta,
     getLacunas: getLacunas,
-    getEtapa: getEtapa
+    getEtapa: getEtapa,
+    processaChute: processaChute
   }
 };
