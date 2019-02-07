@@ -19,8 +19,12 @@ function createSprite(selector) {
       .addClass(to);
   }
 
+  function hasNext() {
+    return current + 1 <= last;
+  }
+
   function nextFrame() {
-    moveFrame(frames[current], frames[++current]);
+    if (hasNext()) moveFrame(frames[current], frames[++current]);
   }
 
   // ===== RETURN =====
