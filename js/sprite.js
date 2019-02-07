@@ -1,4 +1,4 @@
-function createSprite(selector) {
+var createSprite = function(selector) {
   // ===== VARIABLES =====
   var $el = $(selector);
 
@@ -14,16 +14,16 @@ function createSprite(selector) {
   $el.addClass(frames[current]);
 
   // ===== FUNCTIONS =====
-  function moveFrame(from, to) {
+  var moveFrame = function(from, to) {
     $el.removeClass(from)
       .addClass(to);
   }
 
-  function hasNext() {
+  var hasNext = function() {
     return current + 1 <= last;
   }
 
-  function nextFrame() {
+  var nextFrame = function() {
     if (hasNext()) moveFrame(frames[current], frames[++current]);
   }
 
