@@ -8,9 +8,7 @@ var criaJogo = function () {
   // ===== FUNCTIONS =====
   // adiciona uma lacuna em branco para cada letra da palavraSecreta
   var criaLacunas = function () {
-    for (let i = 0; i < palavraSecreta.length; i++) {
-      lacunas.push('');
-    }
+    lacunas = Array(palavraSecreta.length).fill('');
   };
 
   // muda o estado da variável etapa para indicar a próxima e última etapa
