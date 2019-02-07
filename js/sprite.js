@@ -8,14 +8,21 @@ function createSprite(selector) {
   ];
 
   var current = 0;
-  
+
   var last = frames.length -1;
 
   $el.addClass(frames[current]);
 
-  function nextFrame() {
+  function moveFrame(from, to) {
+    $el.removeClass(from)
+      .addClass(to);
+  }
 
-    $el.removeClass(frames[current])
-    .addClass(frames[++current]);
+  function nextFrame() {
+    moveFrame(frames[current], frames[++current]);
+  }
+
+  return {
+    nextFrame: nextFrame
   }
 }
