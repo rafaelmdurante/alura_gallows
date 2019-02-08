@@ -18,9 +18,7 @@ var criaJogo = function (sprite) {
       acertou = true;
     }
 
-    if (!acertou) {
-      sprite.nextFrame();
-    }
+    if (!acertou) sprite.nextFrame();
 
   };
   // adiciona uma lacuna em branco para cada letra da palavraSecreta
@@ -50,6 +48,35 @@ var criaJogo = function (sprite) {
     return etapa;
   };
 
+    // resultado
+  let ganhou = function() {
+      // lacunas preenchidas
+      // funcao some testa se existe alguma condicao assim na array
+      return lacunas.length
+        ? !lacunas.some(function(lacuna) {
+          return lacuna == '';
+        })
+        : false;
+  };
+
+  let perdeu = function() {
+      // sprites finalizados
+      return sprite.isFinished();
+  };
+
+  let ganhouOuPerdeu = function() {
+      // boolean
+      return ganhou() || perdeu();
+  };
+
+  let reinicia = function() {
+      // jogo no status zero
+      etapa = 1;
+      palavraSecreta = '';
+      lacuans = [];
+      sprite.reset();
+  };
+
   /*
   Tornou acessível apenas as funções que fazem sentido serem chamadas por quem utilizar nosso jogo.
   A função `proximaEtapa()` é de uso interno e só foi criada para melhorar a legibilidade e manutenção do código, a
@@ -60,6 +87,10 @@ var criaJogo = function (sprite) {
     setPalavraSecreta: setPalavraSecreta,
     getLacunas: getLacunas,
     getEtapa: getEtapa,
-    processaChute: processaChute
+    processaChute: processaChute,
+    ganhou: ganhou,
+    perdeu: perdeu,
+    ganhouOuPerdeu: ganhouOuPerdeu,
+    reinicia: reinicia
   }
 };
