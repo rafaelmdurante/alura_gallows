@@ -16,11 +16,11 @@
 
         <!-- div com a classe sprite -->
         <div class="sprite"></div>
-        
+
         <ul class="lacunas text-center"></ul>
 
         <div class="text-center">
-        <input id="entrada" 
+        <input id="entrada"
             class="entrada"
             placeholder="Palavra secreta" autofocus>
         </div>
@@ -29,11 +29,13 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/sprite.js"></script>
     <script src="js/jogo.js"></script>
+    <script src="js/controller.js"></script>
     <script>
-        var sprite = createSprite('.sprite');
-        // setInterval(function(){
-        //     sprite.nextFrame();
-        // },500);
+      criaController(
+        criaJogo(
+          createSprite('.sprite');
+        )
+      ).inicia();
     </script>
 </body>
 </html>
