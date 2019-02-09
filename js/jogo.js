@@ -9,6 +9,7 @@ var criaJogo = function (sprite) {
   // ===== FUNCTIONS =====
   // processa o chute
   var processaChute = function(chute) {
+    if(!chute.trim()) throw Error('Chute inválido. Digita UMA letra.');
     var exp = new RegExp(chute, 'gi'),
         res,
         acertou = false;
@@ -33,6 +34,7 @@ var criaJogo = function (sprite) {
 
   // guarda a palavra secreta, cria as lacunas e vai para a próxima etapa
   var setPalavraSecreta = function (palavra) {
+    if(!palavra.trim()) throw Error('Palavra inválida. Digite outra.');
     palavraSecreta = palavra;
     criaLacunas();
     proximaEtapa();

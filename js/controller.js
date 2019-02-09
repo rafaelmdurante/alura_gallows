@@ -23,28 +23,36 @@ var criaController = function(jogo) {
 
   // passa para jogo.setPalavraSecreta() o valor digitado pelo jogador e chama o a função `exibeLacunas()` e `mudaPlaceHolder()` definidas no controller.
   var guardaPalavraSecreta = function () {
-    jogo.setPalavraSecreta($entrada.val().trim());
-    $entrada.val('');
-    exibeLacunas();
-    mudaPlaceHolder('chuta a letra');
+    try {
+      jogo.setPalavraSecreta($entrada.val().trim());
+      $entrada.val('');
+      exibeLacunas();
+      mudaPlaceHolder('chuta a letra');
+    } catch(err) {
+      alert(err.message);
+    }
   };
 
   // lê chute e interpreta pontuaçãoptimize
   var leChute = function() {
-    var chute = $entrada.val().trim().substring(0,1);
-    $entrada.val('');
-    jogo.processaChute(chute);
-    exibeLacunas();
+    try {
+      var chute = $entrada.val().trim().substring(0,1);
+      $entrada.val('');
+      jogo.processaChute(chute);
+      exibeLacunas();
 
-    if (jogo.ganhouOuPerdeu()) {
-      setTimeout(function() {
-        if(jogo.ganhou()) {
-          alert('Ganhou!');
-        } else if (jogo.perdeu()) {
-          alert('Uma pena, tente novamente!');
-        }
-        reiniciaController();
-      }, 200);
+      if (jogo.ganhouOuPerdeu()) {
+        setTimeout(function() {
+          if(jogo.ganhou()) {
+            alert('Ganhou!');
+          } else if (jogo.perdeu()) {
+            alert('Uma pena, tente novamente!');
+          }
+          reiniciaController();
+        }, 200);
+      }  
+    } catch(err) {
+      alert(err.message);
     }
   };
 
