@@ -30,6 +30,14 @@ var criaController = function(jogo) {
     mudaPlaceHolder('chuta a letra');
   };
 
+  // lê chute e interpreta pontuaçãoptimize
+  var leChute = function() {
+    var chute = $entrada.val().trim().substring(0,1));
+    $entrada.val('');
+    jogo.processaChute(chute);
+    exibeLacunas();
+  }
+
   // faz a associação do evento keypress para capturar a entrada do usuário toda vez que ele teclar ENTER
   var inicia = function () {
 
@@ -40,7 +48,7 @@ var criaController = function(jogo) {
             guardaPalavraSecreta();
           break;
           case 2:
-          alert('etapa 2 - falta implementar');
+            leChute();
           break;
         }
       }
